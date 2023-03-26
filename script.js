@@ -30,3 +30,5 @@ const operate = function(operator, firstNum, secondNum) {
       return divide(firstNum, secondNum);
   }
 }
+
+const numbers = document.querySelectorAll(".green");

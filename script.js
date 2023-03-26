@@ -17,6 +17,7 @@ const divide = function(a, b) {
 let firstOperand = '';
 let secondOperand = '';
 let operator;
+let chainingOperators = false;
 
 const operate = function(operator, firstNum, secondNum) {
   switch (operator) {
@@ -36,6 +37,12 @@ const updateDisplay = function() {
   firstOperand = firstOperand.concat(num);
   const display = document.querySelector('.display');
   display.textContent = firstOperand;
+}
+
+const updateOperator = function() {
+  operator = this.value;
+  chainingOperators = true;
+  // add css here to highlight the current operator
 }
 
 const operands = document.querySelectorAll('.operand')

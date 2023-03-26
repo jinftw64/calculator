@@ -4,6 +4,13 @@
 }
 
 .calculator {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
   height: 500px;
   width: 400px;
   border: solid black;
@@ -11,8 +18,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  column-gap: 5px;
-  row-gap: 5px;
+  gap: 5px;
 }
 
 .display {

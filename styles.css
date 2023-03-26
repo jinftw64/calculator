@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html {
+  font-family: monospace;
+}
+
 .calculator {
   height: 100vh;
   display: flex;
@@ -22,6 +26,7 @@
 }
 
 .display {
+  font-size: 72px;
   border: solid black;
   grid-column: 1 / span 4;
 }

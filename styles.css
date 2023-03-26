@@ -28,6 +28,7 @@ html {
 .display {
   font-size: 72px;
   border: solid black;
+  text-align: right;
   grid-column: 1 / span 4;
 }
 

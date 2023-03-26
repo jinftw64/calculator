@@ -14,8 +14,8 @@ const divide = function(a, b) {
   return a / b
 }
 
-let firstOperand;
-let secondOperand;
+let firstOperand = '';
+let secondOperand = '';
 let operator;
 
 const operate = function(operator, firstNum, secondNum) {
@@ -31,4 +31,12 @@ const operate = function(operator, firstNum, secondNum) {
   }
 }
 
-const numbers = document.querySelectorAll(".green");
+const updateDisplay = function() {
+  const num = this.value;
+  firstOperand = firstOperand.concat(num);
+  const display = document.querySelector('.display');
+  display.textContent = firstOperand;
+}
+
+const operands = document.querySelectorAll('.operand')
+operands.forEach(operand => operand.addEventListener('click', updateDisplay));

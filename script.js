@@ -35,25 +35,27 @@ const operate = function(operator, firstNum, secondNum) {
 
 const updateDisplay = function() {
   const display = document.querySelector('.display');
-  displayString = displayString.concat(this.value);
-  display.textContent = displayString;
-}
-
-const update1stOperand = function() {
-}
-
-const update2ndOperand = function() {
+  if (operator) {
+    secondOperand = display.textContent;
+  }
+  display.textContent = displayString.concat(this.value);
 }
 
 const updateOperator = function() {
-  operator = this.value;
   const display = document.querySelector('.display');
-  firstOperand = display.textContent;
-  displayString = '';
-  // add css to highlight the button
+  operator = this.value;
+  if (firstOperand && secondOperand) {
+    firstOperand = operate(operator, firstOperand, secondOperand);
+    secondOperand = '';
+    display.textContent = firstOperand;
+  } else if (firstOperand) {
+    secondOperand = display.textContent;
+  } else if (!firstOperand) {
+    firstOperand = display.textContent;
+  }
 }
 
-const operands = document.querySelectorAll('.operand')
-const operators = document.querySelectorAll('.operator')
+const operands = document.querySelectorAll('.operand');
+const operators = document.querySelectorAll('.operator');
 operands.forEach(operand => operand.addEventListener('click', updateDisplay));
 operators.forEach(operator => operator.addEventListener('click', updateOperator));

@@ -32,11 +32,14 @@ const operate = function(operator, firstNum, secondNum) {
   }
 }
 
-const updateDisplay = function() {
-  const num = this.value;
-  firstOperand = firstOperand.concat(num);
+const updateDisplay = function(string) {
   const display = document.querySelector('.display');
-  display.textContent = firstOperand;
+  display.textContent = string;
+}
+
+const update1stOperand = function() {
+  firstOperand = firstOperand.concat(this.value);
+  updateDisplay(firstOperand);
 }
 
 const updateOperator = function() {
@@ -46,4 +49,6 @@ const updateOperator = function() {
 }
 
 const operands = document.querySelectorAll('.operand')
-operands.forEach(operand => operand.addEventListener('click', updateDisplay));
+const operators = document.querySelectorAll('.operator')
+operands.forEach(operand => operand.addEventListener('click', update1stOperand));
+operators.forEach(operator => operator.addEventListener('click', updateDisplay));

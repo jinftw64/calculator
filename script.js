@@ -51,8 +51,11 @@ const updateDisplay = function() {
 
 const updateOperator = function() {
   const display = document.querySelector('.display');
-  operator = this.value;
+  if (operator) {
+    operate();
+  }
   firstOperand = display.textContent;
+  operator = this.value;
 }
 
 const operands = document.querySelectorAll('.operand');

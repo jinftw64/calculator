@@ -20,42 +20,44 @@ let operator;
 let displayString = ''
 let chainingOperators = false;
 
-const operate = function(operator, firstNum, secondNum) {
+const operate = function() {
+  const display = document.querySelector('.display');
+  secondOperand = display.textContent;
   switch (operator) {
     case '+':
-      return add(firstNum, secondNum);
+      displayString = add(+firstOperand, +secondOperand);
+      break;
     case '-':
-      return subtract(firstNum, secondNum);
+      displayString = subtract(firstOperand, secondOperand);
+      break;
     case '*':
-      return multiply(firstNum, secondNum);
+      displayString = multiply(firstOperand, secondOperand);
+      break;
     case '/':
-      return divide(firstNum, secondNum);
+      displayString = divide(firstOperand, secondOperand);
+      break;
   }
+  display.textContent = displayString;
 }
 
 const updateDisplay = function() {
   const display = document.querySelector('.display');
-  if (operator) {
-    secondOperand = display.textContent;
+  if (operator && firstOperand) {
+    displayString = '';
   }
-  display.textContent = displayString.concat(this.value);
+  displayString = displayString.concat(this.value);
+  display.textContent = displayString;
 }
 
 const updateOperator = function() {
   const display = document.querySelector('.display');
   operator = this.value;
-  if (firstOperand && secondOperand) {
-    firstOperand = operate(operator, firstOperand, secondOperand);
-    secondOperand = '';
-    display.textContent = firstOperand;
-  } else if (firstOperand) {
-    secondOperand = display.textContent;
-  } else if (!firstOperand) {
-    firstOperand = display.textContent;
-  }
+  firstOperand = display.textContent;
 }
 
 const operands = document.querySelectorAll('.operand');
 const operators = document.querySelectorAll('.operator');
+const equalSign = document.querySelector('.equal');
 operands.forEach(operand => operand.addEventListener('click', updateDisplay));
 operators.forEach(operator => operator.addEventListener('click', updateOperator));
+equalSign.addEventListener('click', operate);

@@ -37,14 +37,18 @@ const operate = function() {
       displayString = divide(firstOperand, secondOperand);
       break;
   }
+  if (displayString % 1 !== 0 && displayString.length >= 9) {
+    displayString = String(round(displayString));
+  }
   display.textContent = displayString;
+}
+
+const round = function(num) {
+  return num.toFixed(7);
 }
 
 const updateDisplay = function() {
   const display = document.querySelector('.display');
-  if (operator && firstOperand) {
-    displayString = '';
-  }
   displayString = displayString.concat(this.value);
   display.textContent = displayString;
 }
@@ -55,6 +59,7 @@ const updateOperator = function() {
     operate();
   }
   firstOperand = display.textContent;
+  displayString = '';
   operator = this.value;
 }
 

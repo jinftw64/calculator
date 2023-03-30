@@ -37,7 +37,7 @@ const operate = function() {
       displayString = divide(firstOperand, secondOperand);
       break;
   }
-  if (displayString % 1 !== 0 && displayString.length >= 9) {
+  if (displayString % 1 !== 0 && String(displayString.length >= 9)) {
     displayString = String(round(displayString));
   }
   display.textContent = displayString;

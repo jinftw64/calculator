@@ -18,11 +18,14 @@ let firstOperand = '';
 let secondOperand = '';
 let operator;
 let displayString = ''
-let chainingOperators = false;
 
 const operate = function() {
   const display = document.querySelector('.display');
-  secondOperand = display.textContent;
+  if (firstOperand && !secondOperand) {
+    secondOperand = 0;
+  } else {
+    secondOperand = display.textContent;
+  }
   switch (operator) {
     case '+':
       displayString = add(+firstOperand, +secondOperand);
@@ -41,6 +44,7 @@ const operate = function() {
     displayString = String(round(displayString));
   }
   display.textContent = displayString;
+  operator = null;
 }
 
 const round = function(num) {

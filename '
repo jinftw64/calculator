@@ -40,7 +40,7 @@ const operate = function() {
     displayString = String(round(displayString));
   }
   display.textContent = displayString;
-  firstOperand = displayString;
+  operator = null;
 }
 
 const round = function(num) {
@@ -68,12 +68,4 @@ const operators = document.querySelectorAll('.operator');
 const equalSign = document.querySelector('.equal');
 operands.forEach(operand => operand.addEventListener('click', updateDisplay));
 operators.forEach(operator => operator.addEventListener('click', updateOperator));
-equalSign.addEventListener('click', function() {
-  if (!secondOperand) {
-    firstOperand = '';
-    secondOperand = '';
-    operator = '';
-  } else {
-    operate;
-  }
-})
+equalSign.addEventListener('click', operate);

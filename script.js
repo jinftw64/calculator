@@ -15,8 +15,12 @@ const divide = function(a, b) {
 }
 
 let displayString = '';
+let operator = '';
+let firstOperand = '';
+let secondOperand = '';
 
 const operate = function() {
+  const display = document.querySelector('.display');
   switch (operator) {
     case '+':
       displayString = add(+firstOperand, +secondOperand);
@@ -31,6 +35,9 @@ const operate = function() {
       displayString = divide(firstOperand, secondOperand);
       break;
   }
+  display.textContent = displayString;
+  firstOperand = displayString;
+  secondOperand = '';
 }
 
 const round = function(num) {
@@ -39,11 +46,23 @@ const round = function(num) {
 
 const updateDisplay = function() {
   const display = document.querySelector('.display');
-  displayString = displayString.concat(this.value);
+  if (displayString.length <= 8) {
+    displayString = displayString.concat(this.value);
+  }
   display.textContent = displayString;
+  if (firstOperand && !secondOperand) {
+    secondOperand = displayString;
+  } else {
+    firstOperand = displayString;
+  }
 }
 
 const updateOperator = function() {
+  displayString = '';
+  if (operator) {
+    operate();
+  }
+  operator = this.value;
 }
 
 const operands = document.querySelectorAll('.operand');
@@ -51,4 +70,4 @@ const operators = document.querySelectorAll('.operator');
 const equalSign = document.querySelector('.equal');
 operands.forEach(operand => operand.addEventListener('click', updateDisplay));
 operators.forEach(operator => operator.addEventListener('click', updateOperator));
-equalSign.addEventListener('click',);
+equalSign.addEventListener('click', operate);

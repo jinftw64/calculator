@@ -21,6 +21,7 @@ let secondOperand = '';
 
 const operate = function() {
   const display = document.querySelector('.display');
+  secondOperand = display.textContent;
   switch (operator) {
     case '+':
       displayString = add(+firstOperand, +secondOperand);
@@ -51,14 +52,11 @@ const updateDisplay = function() {
     displayString = displayString.concat(this.value);
   }
   display.textContent = displayString;
-  if (firstOperand && !secondOperand) {
-    secondOperand = displayString;
-  } else {
-    firstOperand = displayString;
-  }
 }
 
 const updateOperator = function() {
+  const display = document.querySelector('.display');
+  firstOperand = display.textContent;
   if (operator) {
     operate();
   }

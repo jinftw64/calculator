@@ -35,6 +35,7 @@ const operate = function() {
       displayString = divide(firstOperand, secondOperand);
       break;
   }
+  displayString = displayString.toString();
   display.textContent = displayString;
   firstOperand = displayString;
   secondOperand = '';
@@ -58,10 +59,10 @@ const updateDisplay = function() {
 }
 
 const updateOperator = function() {
-  displayString = '';
   if (operator) {
     operate();
   }
+  displayString = '';
   operator = this.value;
 }
 

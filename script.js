@@ -40,6 +40,7 @@ const operate = function() {
   display.textContent = displayString;
   firstOperand = displayString;
   secondOperand = '';
+  displayString = '';
 }
 
 const round = function(num) {
@@ -56,12 +57,13 @@ const updateDisplay = function() {
 
 const updateOperator = function() {
   const display = document.querySelector('.display');
-  firstOperand = display.textContent;
-  if (operator) {
+  if (!operator) {
+    firstOperand = display.textContent;
+    displayString = '';
+    operator = this.value;
+  } else {
     operate();
   }
-  displayString = '';
-  operator = this.value;
 }
 
 const operands = document.querySelectorAll('.operand');

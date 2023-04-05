@@ -18,6 +18,7 @@ let displayString = '';
 let operator = '';
 let firstOperand = '';
 let secondOperand = '';
+let multipleOperators = false;
 
 const operate = function() {
   const display = document.querySelector('.display');
@@ -41,6 +42,7 @@ const operate = function() {
   firstOperand = displayString;
   secondOperand = '';
   displayString = '';
+  multipleOperators = false;
 }
 
 const round = function(num) {
@@ -57,10 +59,13 @@ const updateDisplay = function() {
 
 const updateOperator = function() {
   const display = document.querySelector('.display');
-  if (!operator) {
+  if (operator) {
+    multipleOperators = true;
+  }
+  operator = this.value;
+  if (!multipleOperators) {
     firstOperand = display.textContent;
     displayString = '';
-    operator = this.value;
   } else {
     operate();
   }

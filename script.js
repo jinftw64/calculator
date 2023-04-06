@@ -1,3 +1,9 @@
+let displayString = '';
+let firstOperand = '';
+let secondOperand = '';
+let firstOperator = '';
+let secondOperator = '';
+
 const add = function(a, b) {
   return a + b
 };
@@ -14,15 +20,10 @@ const divide = function(a, b) {
   return a / b
 }
 
-let displayString = '';
-let operator = '';
-let firstOperand = '';
-let secondOperand = '';
-let multipleOperators = false;
-
 const operate = function() {
   const display = document.querySelector('.display');
   secondOperand = display.textContent;
+  let operator = secondOperator ? secondOperator : firstOperator;
   switch (operator) {
     case '+':
       displayString = add(+firstOperand, +secondOperand);
@@ -37,12 +38,9 @@ const operate = function() {
       displayString = divide(firstOperand, secondOperand);
       break;
   }
-  displayString = displayString.toString();
+  displayString = String(displayString);
   display.textContent = displayString;
-  firstOperand = displayString;
-  secondOperand = '';
   displayString = '';
-  multipleOperators = false;
 }
 
 const round = function(num) {
@@ -59,14 +57,12 @@ const updateDisplay = function() {
 
 const updateOperator = function() {
   const display = document.querySelector('.display');
-  if (operator) {
-    multipleOperators = true;
-  }
-  operator = this.value;
-  if (!multipleOperators) {
+  if (!firstOperator && !secondOperator) {
     firstOperand = display.textContent;
+    firstOperator = this.value;
     displayString = '';
-  } else {
+  } else if (firstOperator && !secondOperator) {
+    secondOperator = this.value;
     operate();
   }
 }

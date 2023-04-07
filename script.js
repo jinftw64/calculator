@@ -37,7 +37,10 @@ const operate = function() {
       displayString = divide(firstOperand, secondOperand);
       break;
   }
-  displayString = String(round(displayString));
+  if (displayString % 1 !== 0) {
+    displayString = parseFloat(displayString.toFixed(7))
+  }
+  displayString = String(displayString);
 
   display.textContent = displayString;
 

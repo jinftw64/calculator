@@ -37,7 +37,7 @@ const operate = function() {
       displayString = divide(firstOperand, secondOperand);
       break;
   }
-  displayString = String(displayString);
+  displayString = String(round(displayString));
 
   display.textContent = displayString;
 

@@ -45,9 +45,10 @@ const operate = function() {
     firstOperator = secondOperator;
     secondOperator = '';
     firstOperand = displayString;
+  } else {
+    firstOperand = '';
+    secondOperand = '';
   }
-  firstOperand = '';
-  secondOperand = '';
   displayString = '';
 }
 

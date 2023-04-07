@@ -23,8 +23,7 @@ const divide = function(a, b) {
 const operate = function() {
   const display = document.querySelector('.display');
   secondOperand = display.textContent;
-  let operator = secondOperator ? secondOperator : firstOperator;
-  switch (operator) {
+  switch (firstOperator) {
     case '+':
       displayString = add(+firstOperand, +secondOperand);
       break;
@@ -39,7 +38,16 @@ const operate = function() {
       break;
   }
   displayString = String(displayString);
+
   display.textContent = displayString;
+
+  if (secondOperator) {
+    firstOperator = secondOperator;
+    secondOperator = '';
+    firstOperand = displayString;
+  }
+  firstOperand = '';
+  secondOperand = '';
   displayString = '';
 }
 
@@ -57,11 +65,11 @@ const updateDisplay = function() {
 
 const updateOperator = function() {
   const display = document.querySelector('.display');
-  if (!firstOperator && !secondOperator) {
+  displayString = '';
+  if (!firstOperand) {
     firstOperand = display.textContent;
     firstOperator = this.value;
-    displayString = '';
-  } else if (firstOperator && !secondOperator) {
+  } else {
     secondOperator = this.value;
     operate();
   }

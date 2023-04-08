@@ -79,9 +79,21 @@ const updateOperator = function() {
   }
 }
 
+const clear = function() {
+  const display = document.querySelector('.display');
+  firstOperand = '';
+  secondOperand = '';
+  firstOperator = '';
+  secondOperator = '';
+  displayString = '';
+  display.textContent = displayString;
+}
+
 const operands = document.querySelectorAll('.operand');
 const operators = document.querySelectorAll('.operator');
 const equalSign = document.querySelector('.equal');
+const clearAC = document.querySelector('.clear');
 operands.forEach(operand => operand.addEventListener('click', updateDisplay));
 operators.forEach(operator => operator.addEventListener('click', updateOperator));
 equalSign.addEventListener('click', operate);
+clearAC.addEventListener('click', clear);

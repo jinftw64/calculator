@@ -23,36 +23,40 @@ const divide = function(a, b) {
 const operate = function() {
   const display = document.querySelector('.display');
   secondOperand = display.textContent;
-  switch (firstOperator) {
-    case '+':
-      displayString = add(+firstOperand, +secondOperand);
-      break;
-    case '-':
-      displayString = subtract(firstOperand, secondOperand);
-      break;
-    case '*':
-      displayString = multiply(firstOperand, secondOperand);
-      break;
-    case '/':
-      displayString = divide(firstOperand, secondOperand);
-      break;
-  }
-  if (displayString % 1 !== 0) {
-    displayString = parseFloat(displayString.toFixed(7))
-  }
-  displayString = String(displayString);
-
-  display.textContent = displayString;
-
-  if (secondOperator) {
-    firstOperator = secondOperator;
-    secondOperator = '';
-    firstOperand = displayString;
+  if (secondOperand == 0) {
+    display.textContent = 'NOPE!';
   } else {
-    firstOperand = '';
-    secondOperand = '';
+    switch (firstOperator) {
+      case '+':
+        displayString = add(+firstOperand, +secondOperand);
+        break;
+      case '-':
+        displayString = subtract(firstOperand, secondOperand);
+        break;
+      case '*':
+        displayString = multiply(firstOperand, secondOperand);
+        break;
+      case '/':
+        displayString = divide(firstOperand, secondOperand);
+        break;
+    }
+    if (displayString % 1 !== 0) {
+      displayString = parseFloat(displayString.toFixed(7))
+    }
+    displayString = String(displayString);
+
+    display.textContent = displayString;
+
+    if (secondOperator) {
+      firstOperator = secondOperator;
+      secondOperator = '';
+      firstOperand = displayString;
+    } else {
+      firstOperand = '';
+      secondOperand = '';
+    }
+    displayString = '';
   }
-  displayString = '';
 }
 
 const round = function(num) {
@@ -89,11 +93,22 @@ const clear = function() {
   display.textContent = displayString;
 }
 
+const changeSign = function() {
+  const display = document.querySelector('.display');
+  if (display.textContent.charAt(0) == '-') {
+    display.textContent = display.textContent.slice(1);
+  } else {
+    display.textContent = `-${display.textContent}`;
+  }
+}
+
 const operands = document.querySelectorAll('.operand');
 const operators = document.querySelectorAll('.operator');
 const equalSign = document.querySelector('.equal');
 const clearAC = document.querySelector('.clear');
+const sign = document.querySelector('.sign');
 operands.forEach(operand => operand.addEventListener('click', updateDisplay));
 operators.forEach(operator => operator.addEventListener('click', updateOperator));
 equalSign.addEventListener('click', operate);
 clearAC.addEventListener('click', clear);
+sign.addEventListener('click', changeSign);

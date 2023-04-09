@@ -23,6 +23,7 @@ html {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 5px;
+  background-color: #FFFACD;
 }
 
 .display {
@@ -30,8 +31,25 @@ html {
   border: solid black;
   text-align: right;
   grid-column: 1 / span 4;
+  background-color: #B0C4DE;
+}
+
+button {
+  border-radius: 12px;
 }
 
 [value = '0'] {
   grid-column: 1 / span 2;
+}
+
+.operator, .equal {
+  background-color: orange;
+}
+
+.clear, .sign, .percent {
+  background-color: #6495ED;
+}
+
+.operand {
+  background-color: #8FBC8F;
 }

@@ -36,6 +36,7 @@ html {
 
 button {
   border-radius: 12px;
+  font-size: 40px;
 }
 
 [value = '0'] {
